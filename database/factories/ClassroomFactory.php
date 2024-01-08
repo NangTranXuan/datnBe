@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Classroom;
+use App\Models\Room;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,9 +20,11 @@ class ClassroomFactory extends Factory
     public function definition(): array
     {
         $userIds  = User::where('role', 2)->get()->pluck('id')->toArray();
+        $roomIds = Room::get()->pluck('id')->toArray();
         return [
             'name' => $this->faker->words(3, true),
             'teacher_id' => $this->faker->randomElement($userIds),
+            'room_id' => $this->faker->randomElement($roomIds),
         ];
     }
 }

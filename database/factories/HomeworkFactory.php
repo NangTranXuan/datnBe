@@ -6,9 +6,9 @@ use App\Models\Classroom;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lesson>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class LessonFactory extends Factory
+class HomeworkFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,9 +21,9 @@ class LessonFactory extends Factory
         $classIds  = Classroom::get()->pluck('id')->toArray();
         return [
             'classroom_id' => $this->faker->randomElement($classIds),
-            'lesson_name' => $this->faker->words(3, true),
+            'homework_name' => $this->faker->words(3, true),
             'start_time' => $date,
-            'end_time' =>  date('Y-m-d H:i:s',strtotime('+2 hour',strtotime($date))),
+            'end_time' =>  date('Y-m-d H:i:s',strtotime('+1 hour',strtotime($date))),
         ];
     }
 }

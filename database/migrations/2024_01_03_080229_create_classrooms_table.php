@@ -15,9 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('room_id');
             $table->timestamps();
 
             $table->foreign('teacher_id')->references('id')->on('users');
+            $table->foreign('room_id')->references('id')->on('rooms');
+
         });
     }
 

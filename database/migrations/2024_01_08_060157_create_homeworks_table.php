@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('classroom_sessions', function (Blueprint $table) {
+        Schema::create('homeworks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('classroom_id');
-            $table->datetime('session_date');
-            $table->string('location');
-            $table->text('content')->nullable();
+            $table->string('homework_name');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->timestamps();
 
             $table->foreign('classroom_id')->references('id')->on('classrooms');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('classroom_sessions');
+        Schema::dropIfExists('homeworks');
     }
 };

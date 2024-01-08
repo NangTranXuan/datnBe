@@ -12,13 +12,13 @@ class ExamFactory extends Factory
 {
     public function definition()
     {
-        $date = $this->faker->dateTimeBetween();
+        $date = date("Y-m-d H:i:s", strtotime('+' . rand(0, 15) . ' day'));
         $classIds  = Classroom::get()->pluck('id')->toArray();
         return [
             'classroom_id' => $this->faker->randomElement($classIds),
             'exam_name' => $this->faker->words(3, true),
             'start_time' => $date,
-            'end_time' =>  $this->faker->dateTimeBetween($date, '+1 hour'),
+            'end_time' =>  date('Y-m-d H:i:s',strtotime('+1 hour',strtotime($date))),
         ];
     }
 }

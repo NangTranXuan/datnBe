@@ -8,12 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-
 class AuthController extends Controller
 {
     public function login(Request $request) {
         $user = User::where('email', $request->email)->first();
-//        return $user;
 
         if (!$user || !Hash::check($request->password, $user->password, [])) {
             return response()->json(
@@ -36,7 +34,12 @@ class AuthController extends Controller
     }
 
     public function index(Request $request) {
-        return $request->user();
+        return response()->json(
+            [
+                'data' => $request->user()
+            ],
+            200
+        );
     }
 
     public function logout()
