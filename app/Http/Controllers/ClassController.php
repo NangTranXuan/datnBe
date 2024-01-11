@@ -35,7 +35,12 @@ class ClassController extends Controller
         }
         $classrooms = $user[0]["classrooms"];
 
-        return $classrooms;
+        return  response()->json(
+            [
+                'data' => $classrooms,
+            ],
+            200
+        );
     }
 
     public function getTask(Request $request) {
@@ -54,7 +59,35 @@ class ClassController extends Controller
 
         $classrooms = $user[0]["classrooms"];
 
-        return $classrooms;
+        return  response()->json(
+            [
+                'data' => $classrooms,
+            ],
+            200
+        );
     }
 
+    public function getLessonScheduleTask(Request $request) {
+        $time =  strtotime($request->datetime);
+        $today = date('Y-m-d',$time);
+
+        $user = User::where('id', $request->user()->id)->with([
+            'classrooms' => [
+                'room',
+                'lessons' => function (Builder $query) use ($today) {
+                    $query->whereDate('start_time', $today);
+                },
+                'teacher'
+            ],
+        ])->get();
+
+        $classrooms = $user[0]["classrooms"];
+
+        return  response()->json(
+            [
+                'data' => $classrooms,
+            ],
+            200
+        );
+    }
 }
