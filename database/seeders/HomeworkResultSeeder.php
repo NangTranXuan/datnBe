@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Exam;
-use App\Models\Homework;
+use App\Models\HomeworkResult;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class HomeworkSeeder extends Seeder
+class HomeworkResultSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Homework::factory()->count(10)->create();
+        HomeworkResult::factory()->count(50)->create();
     }
 }

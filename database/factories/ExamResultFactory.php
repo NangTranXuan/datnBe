@@ -19,7 +19,7 @@ class ExamResultFactory extends Factory
         return [
             'exam_id' => $this->faker->randomElement($examIds),
             'student_id' => $this->faker->randomElement($userIds),
-            'score' => $this->faker->randomFloat(2, 0, 100),
+            'score' => $this->faker->randomFloat(0, 50, 100),
         ];
     }
 }
