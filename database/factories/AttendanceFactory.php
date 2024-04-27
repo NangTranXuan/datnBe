@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Classroom;
+use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,12 +15,13 @@ class AttendanceFactory extends Factory
 
     public function definition()
     {
-        $classIds  = Classroom::get()->pluck('id')->toArray();
+        $lessonIds  = Lesson::get()->pluck('id')->toArray();
         $userIds  = User::where('role', 3)->get()->pluck('id')->toArray();
 
         return [
-            'classroom_id' => $this->faker->randomElement($classIds),
+            'lesson_id' => $this->faker->randomElement($lessonIds),
             'student_id' => $this->faker->randomElement($userIds),
+            'reason' => $this->faker->words(20, true),
             'date' => $this->faker->date(),
             'status' => $this->faker->randomElement(['1', '0']),
         ];

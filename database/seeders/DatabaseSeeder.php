@@ -16,14 +16,16 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RoomSeeder::class,
             ClassroomSeeder::class,
+            ClassroomStudentSeeder::class,
             ExamSeeder::class,
+            LessonSeeder::class,
             AttendanceSeeder::class,
             NotificationSeeder::class,
-            ClassroomStudentSeeder::class,
             ExamResultSeeder::class,
             ClassroomRoomSeeder::class,
-            LessonSeeder::class,
             HomeworkSeeder::class,
+            HomeworkResultSeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }

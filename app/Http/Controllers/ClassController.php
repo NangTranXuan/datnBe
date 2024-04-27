@@ -17,7 +17,7 @@ class ClassController extends Controller
         if($type == 1) {
             $user = User::where('id', $request->user()->id)->with([
                 'classrooms' => [
-                    'room',
+                    'room:name',
                     'lessons' => function (Builder $query) {
                         $query->whereDate('start_time', Carbon::today());
                     },
