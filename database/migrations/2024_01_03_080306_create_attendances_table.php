@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('classroom_id');
             $table->unsignedBigInteger('student_id');
             $table->date('date');
-            $table->enum('status', ['1', '0']);
+            $table->boolean('status');
             $table->timestamps();
 
             $table->foreign('classroom_id')->references('id')->on('classrooms');

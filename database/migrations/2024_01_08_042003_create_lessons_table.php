@@ -19,7 +19,6 @@ return new class extends Migration
             $table->dateTime('end_time');
             $table->timestamps();
 
-            $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
     }
 

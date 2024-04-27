@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->prefix('user')->group(function() {
     Route::get('/', [AuthController::class, 'index'])->name('get.user');;
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');;
-    Route::post('/lesson', [ClassController::class, 'getLessonToday'])->name('get.lesson-today');
+    Route::post('/lesson', [ClassController::class, 'getLdevice-widthessonToday'])->name('get.lesson-today');
     Route::post('/lesson_schedule_task', [ClassController::class, 'getLessonScheduleTask'])->name('get.lesson-all-schedule');
     Route::get('/task', [ClassController::class, 'getTask'])->name('get.task');
 });

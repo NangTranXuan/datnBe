@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
-            $table->enum('role', ['1', '2', '3']); // 1 is manager, 2 is teacher, 3 is student
+            $table->integer('role'); // 1 is manager, 2 is teacher, 3 is student
             $table->timestamps();
         });
     }

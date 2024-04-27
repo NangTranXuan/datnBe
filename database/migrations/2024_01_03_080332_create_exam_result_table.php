@@ -18,8 +18,6 @@ return new class extends Migration
             $table->float('score');
             $table->timestamps();
 
-            $table->foreign('exam_id')->references('id')->on('exams');
-            $table->foreign('student_id')->references('id')->on('users');
         });
     }
 
