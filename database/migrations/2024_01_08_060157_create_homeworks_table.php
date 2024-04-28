@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('classroom_id');
             $table->string('homework_name');
-            $table->dateTime('start_time');
+            $table->float('time');
             $table->dateTime('end_time');
             $table->timestamps();
 

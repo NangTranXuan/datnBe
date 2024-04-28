@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Exam;
 use App\Models\Homework;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class HomeworkSeeder extends Seeder

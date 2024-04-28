@@ -12,7 +12,7 @@ class Exam extends Model
     protected $fillable = [
         'classroom_id',
         'exam_name',
-        'start_time',
+        'time',
         'end_time',
     ];
 }

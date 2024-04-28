@@ -18,8 +18,9 @@ class DocumentLessonFactory extends Factory
      */
     public function definition(): array
     {
-        $lessonIds  = Lesson::get()->pluck('id')->toArray();
-        $documentIds  = Document::get()->pluck('id')->toArray();
+        $lessonIds = Lesson::get()->pluck('id')->toArray();
+        $documentIds = Document::get()->pluck('id')->toArray();
+
         return [
             'lesson_id' => $this->faker->randomElement($lessonIds),
             'document_id' => $this->faker->randomElement($documentIds),

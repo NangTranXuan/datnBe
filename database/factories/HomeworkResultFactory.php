@@ -18,12 +18,13 @@ class HomeworkResultFactory extends Factory
      */
     public function definition(): array
     {
-        $userIds  = User::where('role', 3)->get()->pluck('id')->toArray();
+        $userIds = User::where('role', 3)->get()->pluck('id')->toArray();
         $homeworkIds = Homework::get()->pluck('id')->toArray();
+
         return [
             'homework_id' => $this->faker->randomElement($homeworkIds),
             'student_id' => $this->faker->randomElement($userIds),
-            'score' => $this->faker->randomFloat(0,50,100),
+            'score' => $this->faker->randomFloat(0, 50, 100),
         ];
     }
 }

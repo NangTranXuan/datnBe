@@ -18,8 +18,9 @@ class QuestionFactory extends Factory
      */
     public function definition(): array
     {
-        $homeworkIds  = Homework::get()->pluck('id')->toArray();
-        $examIds  = Exam::get()->pluck('id')->toArray();
+        $homeworkIds = Homework::get()->pluck('id')->toArray();
+        $examIds = Exam::get()->pluck('id')->toArray();
+
         return [
             'homework_id' => $this->faker->randomElement($homeworkIds),
             'exam_id' => $this->faker->randomElement($examIds),
@@ -28,7 +29,7 @@ class QuestionFactory extends Factory
             'answer_2' => $this->faker->words(10, true),
             'answer_3' => $this->faker->words(10, true),
             'answer_4' => $this->faker->words(10, true),
-            'result' => $this->faker->randomElement([1,2,3,4]),
+            'result' => $this->faker->randomElement([1, 2, 3, 4]),
         ];
     }
 }

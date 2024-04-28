@@ -14,7 +14,7 @@ class Homework extends Model
     protected $fillable = [
         'classroom_id',
         'homework_name',
-        'start_time',
+        'time',
         'end_time',
     ];
 }

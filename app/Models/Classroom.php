@@ -19,7 +19,8 @@ class Classroom extends Model
      */
 
     // 1 teacher - n classroom
-    public function teacher() {
+    public function teacher()
+    {
         return $this->belongsTo(User::class, 'teacher_id', 'id');
     }
 
@@ -30,22 +31,26 @@ class Classroom extends Model
     }
 
     // 1 class - 1 room
-    public function room() {
+    public function room()
+    {
         return $this->belongsTo(Room::class, 'room_id', 'id');
     }
 
     // 1 class - n lesson
-    public function lessons() {
+    public function lessons()
+    {
         return $this->hasMany(Lesson::class, 'classroom_id', 'id');
     }
 
     // 1 class - n exam
-    public function exams() {
+    public function exams()
+    {
         return $this->hasMany(Exam::class, 'classroom_id', 'id');
     }
 
     // 1 class - n homework
-    public function homeworks() {
+    public function homeworks()
+    {
         return $this->hasMany(Homework::class, 'classroom_id', 'id');
     }
 }

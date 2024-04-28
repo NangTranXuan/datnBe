@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password, [])) {
+        if (! $user || ! Hash::check($request->password, $user->password, [])) {
             return response()->json(
                 [
-                    'message' => 'User not exist!'
+                    'message' => 'User not exist!',
                 ],
                 404
             );
@@ -33,10 +32,11 @@ class AuthController extends Controller
         );
     }
 
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         return response()->json(
             [
-                'data' => $request->user()
+                'data' => $request->user(),
             ],
             200
         );
@@ -47,7 +47,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json(
-            $data = "ok",
+            $data = 'ok',
             $status = 200,
         );
     }

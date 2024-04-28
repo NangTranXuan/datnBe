@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +37,7 @@ class RoomSeeder extends Seeder
             ['name' => 'Room A22'],
             ['name' => 'Room A23'],
             ['name' => 'Room A24'],
-            ['name' => 'Room A25'],        
+            ['name' => 'Room A25'],
         ];
         DB::table('rooms')->insert($data);
     }

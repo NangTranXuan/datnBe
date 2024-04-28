@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('lesson_id');
             $table->unsignedBigInteger('student_id');
             $table->string('reason')->nullable();
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->unsignedBigInteger('status'); //0 : có điểm danh, 1: có xin phép, 2: ko xin phép
             $table->timestamps();
         });

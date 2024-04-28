@@ -12,13 +12,14 @@ class ExamFactory extends Factory
 {
     public function definition()
     {
-        $date = date("Y-m-d H:i:s", strtotime('+' . rand(0, 15) . ' day'));
-        $classIds  = Classroom::get()->pluck('id')->toArray();
+        $date = date('Y-m-d H:i:s', strtotime('+'.rand(0, 15).' day'));
+        $classIds = Classroom::get()->pluck('id')->toArray();
+
         return [
             'classroom_id' => $this->faker->randomElement($classIds),
             'exam_name' => $this->faker->words(3, true),
-            'start_time' => $date,
-            'end_time' =>  date('Y-m-d H:i:s',strtotime('+1 hour',strtotime($date))),
+            'time' => 60,
+            'end_time' => $date,
         ];
     }
 }

@@ -17,7 +17,18 @@ class Lesson extends Model
     ];
 
     // 1 class - 1 room
-    public function room() {
+    public function room()
+    {
         return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom_id', 'id');
+    }
+
+    public function documents()
+    {
+        return $this->belongsToMany(Document::class, 'document_lessons', 'lesson_id', 'document_id');
     }
 }

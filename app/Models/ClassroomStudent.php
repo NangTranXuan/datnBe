@@ -17,6 +17,4 @@ class ClassroomStudent extends Model
     /**
      * Relationships
      */
-
-
 }

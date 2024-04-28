@@ -18,8 +18,8 @@ class ClassroomStudentFactory extends Factory
      */
     public function definition(): array
     {
-        $userIds  = User::where('role', 3)->get()->pluck('id')->toArray();
-        $classIds  = Classroom::get()->pluck('id')->toArray();
+        $userIds = User::where('role', 3)->get()->pluck('id')->toArray();
+        $classIds = Classroom::get()->pluck('id')->toArray();
 
         return [
             'classroom_id' => $this->faker->randomElement($classIds),

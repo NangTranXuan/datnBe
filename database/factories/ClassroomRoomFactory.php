@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ClassroomRoomFactory extends Factory
 {
-
     public function definition(): array
     {
-        $classIds  = Classroom::get()->pluck('id')->toArray();
-        $roomIds  = Room::get()->pluck('id')->toArray();
+        $classIds = Classroom::get()->pluck('id')->toArray();
+        $roomIds = Room::get()->pluck('id')->toArray();
+
         return [
             'classroom_id' => $this->faker->randomElement($classIds),
             'room_id' => $this->faker->randomElement($roomIds),

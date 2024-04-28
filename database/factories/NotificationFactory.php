@@ -10,10 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class NotificationFactory extends Factory
 {
-
     public function definition()
     {
-        $userIds  = User::get()->pluck('id')->toArray();
+        $userIds = User::get()->pluck('id')->toArray();
 
         return [
             'user_id' => $this->faker->randomElement($userIds),

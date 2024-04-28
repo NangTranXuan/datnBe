@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ExamResultFactory extends Factory
 {
-
     public function definition()
     {
-        $userIds  = User::where('role', 3)->get()->pluck('id')->toArray();
+        $userIds = User::where('role', 3)->get()->pluck('id')->toArray();
         $examIds = Exam::get()->pluck('id')->toArray();
+
         return [
             'exam_id' => $this->faker->randomElement($examIds),
             'student_id' => $this->faker->randomElement($userIds),
