@@ -23,7 +23,7 @@ class AttendanceFactory extends Factory
             'student_id' => $this->faker->randomElement($userIds),
             'reason' => $this->faker->words(20, true),
             'date' => $this->faker->date(),
-            'status' => $this->faker->randomElement(['1', '0']),
+            'status' => $this->faker->randomElement([0,1,2]),
         ];
     }
 }

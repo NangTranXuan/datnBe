@@ -15,4 +15,9 @@ class Lesson extends Model
         'start_time',
         'end_time',
     ];
+
+    // 1 class - 1 room
+    public function room() {
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
 }

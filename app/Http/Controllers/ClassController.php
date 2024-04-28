@@ -8,12 +8,12 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ClassController extends Controller
 {
     public function getLessonToday(Request $request) {
         $type = $request->type; // type = 1 is today, = null is allday
-
         if($type == 1) {
             $user = User::where('id', $request->user()->id)->with([
                 'classrooms' => [
@@ -23,7 +23,7 @@ class ClassController extends Controller
                     },
                     'teacher'
                 ],
-            ])->get();
+            ])->first();
         } else {
             $user = User::where('id', $request->user()->id)->with([
                 'classrooms' => [
@@ -31,9 +31,23 @@ class ClassController extends Controller
                     'lessons',
                     'teacher'
                 ],
-            ])->get();
+            ])->first();
         }
-        $classrooms = $user[0]["classrooms"];
+        $classrooms = $user["classrooms"];
+
+        $numberOfLessonsStudied= 0;
+        foreach($classrooms as $classroom) {
+            $classroom->teacher;
+            $classroom["teacher"] = $classroom->teacher->name;
+            foreach($classroom->lessons as $lesson) {
+                $numberOfLessonsStudied += $lesson["is_finished"];
+            }
+            $classroom->lessons;
+            $classroom["lessons"] = count( $classroom->lessons);
+            $classroom["numberOfLessonsStudied"] = $numberOfLessonsStudied;
+            $classroom["document"] = ;
+        }
+        dd($classrooms);
 
         return  response()->json(
             [

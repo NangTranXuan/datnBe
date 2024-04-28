@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('lesson_name');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->integer('is_finished')->nullable()->default(0);
             $table->timestamps();
 
         });

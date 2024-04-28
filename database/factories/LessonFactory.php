@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Classroom;
+use App\Models\Document;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,6 +24,7 @@ class LessonFactory extends Factory
             'classroom_id' => $this->faker->randomElement($classIds),
             'lesson_name' => $this->faker->words(3, true),
             'start_time' => $date,
+            'is_finished' => $this->faker->randomElement([0,1]),
             'end_time' =>  date('Y-m-d H:i:s',strtotime('+2 hour',strtotime($date))),
         ];
     }

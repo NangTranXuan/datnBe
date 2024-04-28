@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lesson_id');
+            $table->string('name')->nullable();
+            $table->string('link_url');
             $table->timestamps();
         });
     }
