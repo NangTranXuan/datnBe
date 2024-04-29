@@ -13,7 +13,10 @@ class Attendance extends Model
         'lesson_id',
         'student_id',
         'reason',
-        'date',
         'status',
     ];
+
+    public function lesson() {
+        return $this->belongsTo(Lesson::class);
+    }
 }

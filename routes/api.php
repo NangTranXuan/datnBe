@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\HomeworkController;
@@ -49,6 +50,13 @@ Route::middleware('auth:sanctum')->group(function () {
     // Teacher
     Route::prefix('teacher')->group(function () {
         Route::get('/lists', [TeacherController::class, 'listApi'])->name('get.list-teacher-api');
+    });
+
+    // Attendance
+    Route::prefix('attendance')->group(function () {
+        Route::get('/info_classes', [AttendanceController::class, 'listClassLessons'])->name('get.list-class-api');
+        Route::get('/lists', [AttendanceController::class, 'listApi'])->name('get.list-attendance-api');
+        Route::post('/store', [AttendanceController::class, 'storeApi'])->name('get.store-attendance-api');
     });
 });
 
