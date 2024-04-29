@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Homework;
-use App\Models\Question;
 use Illuminate\Http\Request;
 
 class HomeworkController extends Controller

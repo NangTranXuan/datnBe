@@ -68,8 +68,6 @@ class ClassController extends Controller
         return $classrooms;
     }
 
-
-
     public function getLessonScheduleTaskApi(Request $request)
     {
         $time = strtotime($request->datetime);
@@ -89,6 +87,7 @@ class ClassController extends Controller
 
         return $classrooms;
     }
+
     public function getTaskApi(Request $request)
     {
         $user = User::where('id', $request->user()->id)->with([

@@ -16,7 +16,8 @@ class Attendance extends Model
         'status',
     ];
 
-    public function lesson() {
+    public function lesson()
+    {
         return $this->belongsTo(Lesson::class);
     }
 }

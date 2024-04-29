@@ -59,4 +59,3 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/store', [AttendanceController::class, 'storeApi'])->name('get.store-attendance-api');
     });
 });
-

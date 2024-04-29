@@ -11,10 +11,11 @@ use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
 {
-    public function listClassLessons(Request $request) {
+    public function listClassLessons(Request $request)
+    {
         $classroomIds = User::find($request->user()->id)->classrooms->pluck('id')->toArray();
         $classrooms = Classroom::whereIn('id', $classroomIds)->with([
-            'lessons' =>function (Builder $query) {
+            'lessons' => function (Builder $query) {
                 $query->whereNot('is_finished', 1);
             },
             'teacher'])->get();
@@ -22,21 +23,24 @@ class AttendanceController extends Controller
         return $classrooms;
     }
 
-    public function listApi() {
+    public function listApi()
+    {
         $attendances = Attendance::all();
-        foreach( $attendances as $attendance) {
-            $attendance["lesson_name"] = $attendance->lesson->lesson_name;
-            $attendance["classroom"] = $attendance->lesson->classroom;
-            unset($attendance["created_at"], $attendance["updated_at"]);
+        foreach ($attendances as $attendance) {
+            $attendance['lesson_name'] = $attendance->lesson->lesson_name;
+            $attendance['classroom'] = $attendance->lesson->classroom;
+            unset($attendance['created_at'], $attendance['updated_at']);
         }
 
         return $attendances;
     }
 
-    public function storeApi(StoreAttendanceRequest $request) {
+    public function storeApi(StoreAttendanceRequest $request)
+    {
         $request['status'] = 1;
 
         $attendances = Attendance::create($request->all());
+
         return $attendances;
     }
 }
