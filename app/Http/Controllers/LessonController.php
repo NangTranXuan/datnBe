@@ -7,15 +7,10 @@ use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
-    public function getLessonDetail(Request $request)
+    public function detailApi(Request $request, $lesson_id)
     {
         $lesson = Lesson::where('id', $request->lesson_id)->with(['classroom', 'room'])->first();
 
-        return response()->json(
-            [
-                'data' => $lesson,
-            ],
-            200
-        );
+        return $lesson;
     }
 }

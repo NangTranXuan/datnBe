@@ -17,4 +17,14 @@ class Homework extends Model
         'time',
         'end_time',
     ];
+
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class, 'classroom_id', 'id');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'homework_id', 'id');
+    }
 }

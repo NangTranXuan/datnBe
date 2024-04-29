@@ -13,10 +13,10 @@ class Question extends Model
         'homework_id',
         'exam_id',
         'question',
-        'answer_1',
-        'answer_2',
-        'answer_3',
-        'answer_4',
-        'result',
+        'option_1',
+        'option_2',
+        'option_3',
+        'option_4',
+        'answer',
     ];
 }

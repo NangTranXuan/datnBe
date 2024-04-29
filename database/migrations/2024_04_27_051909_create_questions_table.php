@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('homework_id')->nullable();
             $table->unsignedBigInteger('exam_id')->nullable();
             $table->string('question');
-            $table->string('answer_1');
-            $table->string('answer_2');
-            $table->string('answer_3');
-            $table->string('answer_4');
-            $table->integer('result'); // 1=> answer_1,  2=> answer_2,  3=> answer_3,  4=> answer_4
+            $table->string('option_1');
+            $table->string('option_2');
+            $table->string('option_3');
+            $table->string('option_4');
+            $table->string('answer'); // 1=> answer_1,  2=> answer_2,  3=> answer_3,  4=> answer_4
             $table->timestamps();
         });
     }

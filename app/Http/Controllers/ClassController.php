@@ -11,9 +11,8 @@ use Illuminate\Support\Carbon;
 
 class ClassController extends Controller
 {
-    public function getListClass(Request $request)
+    public function getListApi(Request $request)
     {
-        $type = $request->type; // type = 1 is today, = null is allday
         $classroomIds = User::find($request->user()->id)->classrooms->pluck('id')->toArray();
         $classrooms = Classroom::whereIn('id', $classroomIds)->with(['room', 'lessons' => ['documents'], 'teacher'])->get();
 
@@ -28,17 +27,12 @@ class ClassController extends Controller
             $classroom['numberOfLessonsStudied'] = $numberOfLessonsStudied;
         }
 
-        return response()->json(
-            [
-                'data' => $classrooms,
-            ],
-            200
-        );
+        return $classrooms;
     }
 
-    public function classDetail(Request $request)
+    public function detailApi(Request $request, $class_id)
     {
-        $classrooms = Classroom::whereIn('id', $request->class_id)->with(['room', 'lessons' => ['documents'], 'teacher'])->get();
+        $classrooms = Classroom::where('id', $class_id)->with(['room', 'lessons' => ['documents'], 'teacher'])->get();
 
         $numberOfLessonsStudied = 0;
         foreach ($classrooms as $classroom) {
@@ -51,15 +45,10 @@ class ClassController extends Controller
             $classroom['numberOfLessonsStudied'] = $numberOfLessonsStudied;
         }
 
-        return response()->json(
-            [
-                'data' => $classrooms,
-            ],
-            200
-        );
+        return $classrooms;
     }
 
-    public function getLessonToday(Request $request)
+    public function getLessonTodayApi(Request $request)
     {
         $classroomIds = User::find($request->user()->id)->classrooms->pluck('id')->toArray();
         $classrooms = Classroom::whereIn('id', $classroomIds)->with(['room',
@@ -76,40 +65,12 @@ class ClassController extends Controller
             $classroom['numberOfLessonsStudied'] = $numberOfLessonsStudied;
         }
 
-        return response()->json(
-            [
-                'data' => $classrooms,
-            ],
-            200
-        );
+        return $classrooms;
     }
 
-    public function getTask(Request $request)
-    {
-        $user = User::where('id', $request->user()->id)->with([
-            'classrooms' => [
-                'room',
-                'exams' => function (Builder $query) {
-                    $query->whereBetween('end_time', [Carbon::today(), Carbon::today()->addDays(3)]);
-                },
-                'homeworks' => function (Builder $query) {
-                    $query->whereBetween('end_time', [Carbon::today(), Carbon::today()->addDays(3)]);
-                },
-                'teacher',
-            ],
-        ])->get();
 
-        $classrooms = $user[0]['classrooms'];
 
-        return response()->json(
-            [
-                'data' => $classrooms,
-            ],
-            200
-        );
-    }
-
-    public function getLessonScheduleTask(Request $request)
+    public function getLessonScheduleTaskApi(Request $request)
     {
         $time = strtotime($request->datetime);
         $today = date('Y-m-d', $time);
@@ -126,11 +87,22 @@ class ClassController extends Controller
 
         $classrooms = $user[0]['classrooms'];
 
-        return response()->json(
-            [
-                'data' => $classrooms,
+        return $classrooms;
+    }
+    public function getTaskApi(Request $request)
+    {
+        $user = User::where('id', $request->user()->id)->with([
+            'classrooms' => [
+                'room',
+                'homeworks' => function (Builder $query) {
+                    $query->whereBetween('end_time', [Carbon::today(), Carbon::today()->addDays(3)]);
+                },
+                'teacher',
             ],
-            200
-        );
+        ])->get();
+
+        $classrooms = $user[0]['classrooms'];
+
+        return $classrooms;
     }
 }
