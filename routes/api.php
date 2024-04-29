@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,25 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->prefix('user')->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('get.user');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    // // Class
-    // Route::post('/list_class', [ClassController::class, 'getListClass'])->name('get.class-all');
-    // Route::post('/class_detail', [ClassController::class, 'classDetail'])->name('get.class-detail');
-    // Route::post('/lesson', [ClassController::class, 'getLessonToday'])->name('get.lesson-today');
-    // Route::post('/lesson_schedule_task', [ClassController::class, 'getLessonScheduleTask'])->name('get.lesson-all-schedule');
-    // Route::get('/task', [ClassController::class, 'getTask'])->name('get.task');
-
-    // // Lesson
-    // Route::post('/lesson_detail', [LessonController::class, 'getLessonDetail'])->name('get.list-class');
-
-    // // Homework
-
-    // Route::prefix('homework')->group(function () {
-    //     Route::get('/lists', [HomeworkController::class, 'lists'])->name('get.list-homework');
-    //     Route::get('/questions/{homework_id}', [HomeworkController::class, 'listQuestion'])->name('get.list-question');
-
-    // });
-
 });
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -64,5 +46,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/questions/{homework_id}', [HomeworkController::class, 'listQuestionApi'])->name('get.list-question-api');
     });
 
+    // Teacher
+    Route::prefix('teacher')->group(function () {
+        Route::get('/lists', [TeacherController::class, 'listApi'])->name('get.list-teacher-api');
+    });
 });
 
