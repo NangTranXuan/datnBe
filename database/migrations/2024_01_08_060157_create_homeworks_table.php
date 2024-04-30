@@ -18,7 +18,6 @@ return new class extends Migration
             $table->float('time');
             $table->dateTime('end_time');
             $table->timestamps();
-
         });
     }
 

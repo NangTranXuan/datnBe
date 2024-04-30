@@ -25,6 +25,7 @@ class ClassController extends Controller
                 $lesson['attendenceStatus'] = $attendenceStatus;
             }
             $classroom['numberOfLessonsStudied'] = $numberOfLessonsStudied;
+            unset($classroom['created_at'],$classroom['updated_at']);
         }
 
         return $classrooms;
